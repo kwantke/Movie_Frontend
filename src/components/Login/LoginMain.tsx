@@ -14,7 +14,7 @@ export default function LoginMain({id, password, setId, setPassword, login}: pro
 
   return (
       <>
-        <section className="login-form">
+        <section className="join-form">
           <h1>LOGO DESIGN</h1>
           <div className="id int-area">
             <input

@@ -22,6 +22,9 @@ export default function Login() {
   const [failedAlarm ,setFailedAlarm] =  useState(false);
   // 현재 컴포넌트인 Login에서 로그인 성공시 /main으로 가기위한 리다이렉트 플래그
   const [goMainFlag, setGoMainFlag] = useState(false);
+  //setFailedAlarm은 RunLogin 컴포넌트에서 컨트롤하는데,
+  //만약 failedAlarm 플래그가 켜지면
+  //useEffect가 바뀐것을 인지하여 1초 후에 끈다.
   useEffect(()=>{
     if(failedAlarm){
       setTimeout(() =>{
@@ -30,16 +33,20 @@ export default function Login() {
     }
   })
   // clean-up
+  //현재 컴포넌트인 Login을 떠나 Main으로 가기 전에
+  //state를 사용하는 컴포넌트를 끄기 위해 존재
   useEffect (()=>{
     return () =>{
       setRunLogin(false);
 
     }
   })
+
+  //LoginMain 컴포넌트에서 사용
   const login = () => {
     setRunLogin(true);
   }
-
+  // RunLogin에서 사용함
   const goMain = ()=>{
     console.log("로그인 성공goMain")
     setRunLogin(false);
@@ -64,6 +71,9 @@ export default function Login() {
             setPassword={setPassword}
             login={login}
         />}
+        {/*// RunLogin 컴포넌트는 실제 화면에 보이는것은 없으나,
+         함수처럼 사용할 목적임.
+         상세한 설명은 RunLogin 컴포넌트에서 확인*/}
         {runLogin && (<RunLogin
                               id={id}
                               password={password}
