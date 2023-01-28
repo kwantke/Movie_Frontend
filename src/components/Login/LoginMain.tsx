@@ -41,7 +41,7 @@ export default function LoginMain({id, password, setId, setPassword, login}: pro
           </div>
           <div className="caption">
             <Link to="">Forgot Password?</Link>
-            <Link to="">회원가입</Link>
+            <Link to="/join">회원가입</Link>
           </div>
         </section>
 

@@ -17,16 +17,24 @@ export default function RunLogin({
                                    , goMain
                                   }:PropTypes){
   const loginUrl = process.env.REACT_APP_MAIN_LOGIN as string;
-
+  let data ={
+    id : id,
+    password: password
+  }
 
   useEffect(() => {
     axios.post(loginUrl,
-        null,
-        {params: {id: id, password: password}}
+        JSON.stringify(data),{
+          headers: {
+            "Content-Type": `application/json`,
+          },
+        }
+
     ).then(function (resp) {
       //console.log(resp.data);
       if (resp.data !== null && resp.data != "") {
         if(resp.data.errorCode == null) {
+          console.log(resp.data);
           console.log("로그인 성공");
           goMain();
         }
@@ -42,7 +50,6 @@ export default function RunLogin({
         /*offFailedAlarm();*/
         setRunLogin(false);
       }
-
 
     }).catch(function (err) {
       console.log(`Error Message: ${err}`);
