@@ -1,11 +1,19 @@
 import "./JoinFailedAlert.css"
 
-export default function JoinFailedAlert(){
+interface PropTypes {
+  failMessage: string;
+}
+export default function JoinFailedAlert({
+    failMessage
+
+  }:PropTypes){
+
 
   return(
       <>
         <div className="faliedJoin alert">
-          아이디와 비밀번호를 입력해주세요.
+
+          {failMessage}
         </div>
 
       </>

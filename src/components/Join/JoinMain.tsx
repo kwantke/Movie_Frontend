@@ -11,11 +11,13 @@ interface PropTypes {
   setEmail: (email: string) => void;
   failedAlarmOn: boolean;
   setFailedAlarmOn: (failedAlarm: boolean) => void;
+  failMessage: string;
+  setFailMessage: (failMessage:string) => void;
   setRunJoin: (runJoin: boolean) => void;
 }
 
 export default function JoinMain({
-   id
+     id
    , setId
    , password
    , setPassword
@@ -23,6 +25,8 @@ export default function JoinMain({
    , setEmail
    , failedAlarmOn
    , setFailedAlarmOn
+   , failMessage
+   , setFailMessage
    , setRunJoin
 }: PropTypes) {
 
@@ -41,6 +45,7 @@ export default function JoinMain({
     if(id !== "" && password !==""){
       setRunJoin(true);
     }else {
+      setFailMessage("아이디와 비밀번호를 입력해주세요.")
       setFailedAlarmOn(true);
     }
   }
@@ -48,7 +53,7 @@ export default function JoinMain({
       <>
         <section className="join-form">
           <h1>회원가입</h1>
-          {failedAlarmOn && <JoinFailedAlert/>}
+          {failedAlarmOn && <JoinFailedAlert failMessage={failMessage}/>}
           <div className="id int-area">
             <input
                 type="text"

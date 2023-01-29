@@ -8,6 +8,7 @@ export default function Join(){
     const [email, setEmail] = useState("");
     const [failedAlarmOn, setFailedAlarmOn] = useState(false);
     const [runJoin, setRunJoin] = useState(false);
+    const [failMessage, setFailMessage] = useState("");
     // 실패했을 경우에 알람은 1초간 켜졌다가 까진다.
     /*const failedAlarm = ()=>{
         console.log("회원가입 실패")
@@ -24,9 +25,17 @@ export default function Join(){
             setEmail={setEmail}
             failedAlarmOn = {failedAlarmOn}
             setFailedAlarmOn = {setFailedAlarmOn}
+            failMessage={failMessage}
+            setFailMessage={setFailMessage}
             setRunJoin = {setRunJoin}
         />
-          {runJoin && (<RunJoin id={id} password={password} email={email} />)}
+          {runJoin && (<RunJoin id={id}
+                                password={password}
+                                email={email}
+                                setRunJoin={setRunJoin}
+                                setFailedAlarmOn={setFailedAlarmOn}
+                                setFailMessage={setFailMessage}
+          />)}
       </>
     )
 
