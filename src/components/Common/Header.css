@@ -1,0 +1,22 @@
+
+.container{
+  max-width: 1750px;
+  margin: auto;
+  width: 100%;
+}
+
+header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--body-color);
+  z-index: 100;
+}
+/* Nav */
+.nav{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}

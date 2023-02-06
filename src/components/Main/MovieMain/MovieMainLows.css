@@ -1,0 +1,72 @@
+/* Movie Box*/
+.movie-box{
+  position: relative;
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+}
+.movie-box-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.movie-box .box-text{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 14px;
+  background: linear-gradient(
+          8deg,
+          hsl(240 17% 14% / 74%) 14%,
+          hsl(240 17% 14% / 14%) 44%
+  );
+  overflow: hidden;
+}
+
+.movie-title{
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.movie-type{
+  font-size: 0.938rem;
+}
+
+.movies-content .movie-box:hover .movie-box-img{
+  transform: scale(1.1);
+  transition: 0.5s;
+}
+
+@media (max-width: 991px){
+  .movie-box{
+    height: 340px;
+  }
+
+}
+@media (max-width: 408px) {
+  .movie-box{
+    height: 300px;
+  }
+
+}
+
+/* For small Devices */
+@media (max-width: 370px) {
+
+  .movie-box {
+    height: 285px;
+  }
+}
+/* Swiper btn*/
+.swiper-btn{
+  display: flex;
+}
+.swiper-button-next,
+.swiper-button-prev{
+  /*    position: static !important;
+      margin: 0 0 0 10px !important;*/
+}

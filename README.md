@@ -5,3 +5,4 @@
 
 ### npm install react-router-dom@5 @types/react-router-dom
 ### npm install axios
+### npm install swiper

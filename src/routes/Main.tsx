@@ -1,6 +1,8 @@
 import Header from "../components/Common/Header";
 import Footer from "../components/Common/Footer";
 import MovieMain from "../components/Main/MovieMain";
+import {useState} from "react";
+
 interface PropTypes{
   location: {
     state: {
@@ -8,17 +10,21 @@ interface PropTypes{
     }
   }
 }
-export default function Main({
+/*export default function Main({
       location: {
         state: { inFromLogin },
       },
-    } :any){
+    } :any){*/
+export default function Main(){
+
+  const [successLogin, setSuccessLoing] = useState(true);
+  //setSuccessLoing(true);
 
   return (
       <>
           {/*<h1>{inFromLogin}님 환영합니다.</h1>*/}
           <Header/>
-          <MovieMain/>
+          <MovieMain successLogin={successLogin}/>
           <Footer/>
       </>
   )
