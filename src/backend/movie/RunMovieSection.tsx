@@ -14,7 +14,10 @@ type listProp<IMovieSection> ={
 
 
 
-export default function RunMovieSection({setMovieSectionList, setHasSectionFlag}: any){
+export default function RunMovieSection(
+    {setMovieSectionList
+      , setHasSectionFlag
+      , setRunSectionFlag}: any){
 
   const joinUrl = process.env.REACT_APP_MOVIE_SECTION_LIST as string;
   useEffect(()=>{
@@ -31,9 +34,11 @@ export default function RunMovieSection({setMovieSectionList, setHasSectionFlag}
           console.log(res);
           setMovieSectionList(res.data);
           setHasSectionFlag(true);
+          setRunSectionFlag(false);
+
         }else{
           console.log("섹션데이터 가져오기 실패")
-
+          setRunSectionFlag(false);
         }
       } else {
 

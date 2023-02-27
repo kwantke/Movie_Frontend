@@ -44,6 +44,7 @@ export default function Login() {
 
   //LoginMain 컴포넌트에서 사용
   const login = () => {
+    console.log("lgoin")
     setRunLogin(true);
   }
   // RunLogin에서 사용함

@@ -15,11 +15,9 @@ export interface IMovieSection {
   movieDtoList: IMovie[];
 }
 
-type ListProps = {
-  movieSectionList: IMovieSection[]
-}
-//export default function MovieMainLows({movieSectionList}){
-export const MovieMainLows = ({movieSectionList}: any) => {
+
+export default function MovieMainLows({movieSectionList, goMovieDetail}: any){
+//export const MovieMainLows = ({movieSectionList, goMovieDetail}: any) => {
 
 
   return (
@@ -79,7 +77,7 @@ export const MovieMainLows = ({movieSectionList}: any) => {
                             <div className="box-text">
                               <h2 className="movie-title">{movie.name}</h2>
                               <span className="movie-type">{movie.type}</span>
-                              <a href="#none" className="watch-btn play-btn">
+                              <a href="#none" className="watch-btn play-btn" onClick={()=>goMovieDetail(movie.id)}>
                                 <i className='bx bx-right-arrow'></i>
                               </a>
                             </div>
