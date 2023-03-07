@@ -1,12 +1,16 @@
 import {useEffect} from "react";
 import axios from "axios";
+import {useDispatch, useSelector} from 'react-redux';
+import { setUser} from "../module/redux/userSlice";
+import {RootState} from "../module/redux/store";
+import {useAppSelector} from "../module/redux/hooks";
 
 interface PropTypes{
   id: string;
   password: string;
   setRunLogin: (flag: boolean) => void;
   setFailedAlarm: (flag: boolean) => void;
-  goMain: () => void;
+  goMain: (id:string, img:string) => void;
   /*offFailedAlarm: () => void;*/
 }
 export default function RunLogin({
@@ -22,6 +26,9 @@ export default function RunLogin({
     password: password
   }
 
+  const {userId, img, isAuthenticated} = useAppSelector((state:RootState) =>state.user);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     axios.post(loginUrl,
         JSON.stringify(data),{
@@ -36,7 +43,7 @@ export default function RunLogin({
         if(resp.data.errorCode == null) {
           console.log(resp.data);
           console.log("로그인 성공");
-          goMain();
+          goMain("id","img");
         }
         else {
           console.log("로그인 실패");

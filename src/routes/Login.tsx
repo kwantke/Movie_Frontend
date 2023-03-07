@@ -48,16 +48,22 @@ export default function Login() {
     setRunLogin(true);
   }
   // RunLogin에서 사용함
-  const goMain = ()=>{
+  /*const goMain = ()=>{
     console.log("로그인 성공goMain")
     setRunLogin(false);
     setGoMainFlag(true);
-  }
+  }*/
   /*const offFailedAlarm = () => {
     setTimeout(() =>{
       setFailedAlarm(false);
     }, 1000);
   }*/
+
+  const goMain =(id:string, img:string)=>{
+    console.log("로그인 성공" + id);
+    setRunLogin(false);
+    setGoMainFlag(true);
+  }
   setTimeout(() => {
     setLoading(false);
   }, 2000)

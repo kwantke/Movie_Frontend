@@ -12,28 +12,31 @@ interface PropTypes{
     }
   }
 }
-/*export default function Main({
-      location: {
-        state: { inFromLogin },
-      },
-    } :any){*/
+
 export interface IMovieSection{
   id: number;
   section: number;
   sectionName: string;
 
 }
-export default function Main(){
-
+/*export default function Main(){*/
+export default function Main({
+                               location: {
+                                 state: { inFromLogin },
+                               },
+                             } :any){
+  console.log("inFromLogin : "+inFromLogin)
   const [successLogin, setSuccessLoing] = useState(true);
   //setSuccessLoing(true);
   const [movieSectionList,setMovieSectionList] = useState<IMovieSection[]>();
   const [runSectionFlag, setRunSectionFlag] = useState(true);
   const [hasSectionFlag, setHasSectionFlag] = useState(false);
   const [goMovieDetailFlag, setGoMovieDetailFlag] = useState(false);
+  const [movieId, setMovieId] = useState("");
   const goMovieDetail =(id:string)=>{
     console.log("id="+id)
-    setGoMovieDetailFlag(true)
+    setMovieId(id);
+    setGoMovieDetailFlag(true);
   }
   return (
       <>
@@ -54,11 +57,14 @@ export default function Main(){
             setRunSectionFlag={setRunSectionFlag}/>)
 
         }
-        {/*{runMovieDetailFlag && (
+        {goMovieDetailFlag && (
             <Redirect to={{
-
-            }}
-        )}*/}
+              pathname: "/detail",
+              state: {
+                movieId: movieId
+              }
+            }}/>
+        )}
 
       </>
   )
