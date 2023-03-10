@@ -1,7 +1,15 @@
 import "./LogoAndSearchBoxAndUser.css"
-export default function LogoAndSearchBoxAndUser(){
-
-
+interface propTypes{
+  userId:string
+  img:string
+}
+export default function LogoAndSearchBoxAndUser(
+    {
+      userId
+      ,img
+    }:propTypes
+){
+console.log(userId+" "+img);
   return (
     <>
       {/* Logo */}
@@ -15,7 +23,7 @@ export default function LogoAndSearchBoxAndUser(){
       </div>
       {/* User */}
       <a href="#" className="user">
-        <img src="/images/img/user.jpg" alt="" className="user-img"/>
+        <img src={img} alt="" className="user-img"/>
       </a>
     </>
   )

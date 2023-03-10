@@ -4,6 +4,7 @@ import {useState} from "react";
 import RunMovieSection from "../backend/movie/RunMovieSection";
 import MovieMain from "../components/Main/MovieMain";
 import {Redirect} from "react-router-dom";
+import {useAppSelector} from "../module/redux/hooks";
 
 interface PropTypes{
   location: {
@@ -33,6 +34,8 @@ export default function Main({
   const [hasSectionFlag, setHasSectionFlag] = useState(false);
   const [goMovieDetailFlag, setGoMovieDetailFlag] = useState(false);
   const [movieId, setMovieId] = useState("");
+
+
   const goMovieDetail =(id:string)=>{
     console.log("id="+id)
     setMovieId(id);

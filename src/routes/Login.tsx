@@ -4,6 +4,8 @@ import Loading from "../components/Login/Loading";
 import LoginMain from "../components/Login/LoginMain";
 import LoginFailAlert from "../components/Login/LoginFailAlert"
 import RunLogin from "../backend/RunLogin";
+import {useDispatch} from "react-redux";
+import {setUser} from "../module/redux/userSlice";
 
 export default function Login() {
   const [loading, setLoading] = useState(true); //로딩 페이지 보여주는 프래그
@@ -22,6 +24,9 @@ export default function Login() {
   const [failedAlarm ,setFailedAlarm] =  useState(false);
   // 현재 컴포넌트인 Login에서 로그인 성공시 /main으로 가기위한 리다이렉트 플래그
   const [goMainFlag, setGoMainFlag] = useState(false);
+
+  const dispatch = useDispatch();
+
   //setFailedAlarm은 RunLogin 컴포넌트에서 컨트롤하는데,
   //만약 failedAlarm 플래그가 켜지면
   //useEffect가 바뀐것을 인지하여 1초 후에 끈다.
@@ -61,6 +66,7 @@ export default function Login() {
 
   const goMain =(id:string, img:string)=>{
     console.log("로그인 성공" + id);
+    dispatch(setUser({userId: id, img: img, isAuthenticated: true}))
     setRunLogin(false);
     setGoMainFlag(true);
   }

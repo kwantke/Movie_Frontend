@@ -26,7 +26,7 @@ export default function RunLogin({
     password: password
   }
 
-  const {userId, img, isAuthenticated} = useAppSelector((state:RootState) =>state.user);
+  //const {userId, img, isAuthenticated} = useAppSelector((state:RootState) =>state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,13 +37,13 @@ export default function RunLogin({
           },
         }
 
-    ).then(function (resp) {
+    ).then(function (res) {
       //console.log(resp.data);
-      if (resp.data !== null && resp.data != "") {
-        if(resp.data.errorCode == null) {
-          console.log(resp.data);
+      if (res.data !== null && res.data != "") {
+        if(res.data.errorCode == null) {
+          console.log(res.data);
           console.log("로그인 성공");
-          goMain("id","img");
+          goMain(res.data.id,res.data.img);
         }
         else {
           console.log("로그인 실패");
