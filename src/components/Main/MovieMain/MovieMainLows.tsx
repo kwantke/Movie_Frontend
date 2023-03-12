@@ -78,11 +78,11 @@ export default function MovieMainLows({movieSectionList, goMovieDetail}: any){
                             <div className="box-text">
                               <h2 className="movie-title">{movie.name}</h2>
                               <span className="movie-type">{movie.type}</span>
-                              {/*<a href="#none" className="watch-btn play-btn" onClick={()=>goMovieDetail(movie.id)}>
+                             {/* <a href={`/detail/${movie.id}`} className="watch-btn play-btn" onClick={()=>goMovieDetail(movie.id)}>
                                 <i className='bx bx-right-arrow'></i>
                               </a>*/}
                               <Link to={
-                                {pathname: "/detail",
+                                {pathname: `/detail/${movie.id}`,
                                   state:{
                                     movieId: movie.id
                                   }

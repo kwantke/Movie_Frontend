@@ -8,3 +8,4 @@
 ### npm install swiper
 ### npm i redux react-redux
 ### npm install @types/react-redux
+### npm install redux-persist

@@ -10,7 +10,7 @@ interface propTypes {
   login: ()=> void;
 }
 
-export default function LoginMain({id, password, setId, setPassword, login}: propTypes) {
+export function LoginMain({id, password, setId, setPassword, login}: propTypes) {
 
   return (
       <>

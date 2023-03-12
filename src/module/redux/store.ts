@@ -1,17 +1,28 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import userReducer from "./userSlice";
 import {useReducer} from "react";
-
+import storage from "redux-persist/lib/storage";
+import {persistReducer} from "redux-persist";
 export interface UserInfo{
   id: string
   img: string
 }
+const reducers = combineReducers({
+  user: userReducer,
+})
 
+const persistConfig = {
+  key: "root",
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = configureStore({
-  reducer:{
-    user: userReducer,
-  },
+  reducer: persistedReducer
+  , middleware: getDefaultMiddleware => getDefaultMiddleware({
+    serializableCheck: false})
+  , devTools: true,
 
 })
 

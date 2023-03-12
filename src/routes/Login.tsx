@@ -1,13 +1,14 @@
 import {useEffect, useState} from "react";
 import {Redirect} from "react-router-dom";
 import Loading from "../components/Login/Loading";
-import LoginMain from "../components/Login/LoginMain";
+import {LoginMain} from "../components/Login/LoginMain";
 import LoginFailAlert from "../components/Login/LoginFailAlert"
 import RunLogin from "../backend/RunLogin";
 import {useDispatch} from "react-redux";
 import {setUser} from "../module/redux/userSlice";
+import {useAppDispatch} from "../module/redux/hooks";
 
-export default function Login() {
+export function Login() {
   const [loading, setLoading] = useState(true); //로딩 페이지 보여주는 프래그
   // 사용자가 DB로 부터 가져온 ID
   //LoginMain, RunLogin 에 props 전달,
@@ -25,7 +26,7 @@ export default function Login() {
   // 현재 컴포넌트인 Login에서 로그인 성공시 /main으로 가기위한 리다이렉트 플래그
   const [goMainFlag, setGoMainFlag] = useState(false);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   //setFailedAlarm은 RunLogin 컴포넌트에서 컨트롤하는데,
   //만약 failedAlarm 플래그가 켜지면
