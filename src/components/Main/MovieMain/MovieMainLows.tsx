@@ -19,7 +19,7 @@ export interface IMovieSection {
 
 export default function MovieMainLows({movieSectionList, goMovieDetail}: any){
 //export const MovieMainLows = ({movieSectionList, goMovieDetail}: any) => {
-
+console.log("dsds"+movieSectionList.length)
 
   return (
       <>

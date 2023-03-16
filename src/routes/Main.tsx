@@ -45,7 +45,7 @@ export default function Main(){
       <>
 
           {/*<h1>{inFromLogin}님 환영합니다.</h1>*/}
-
+          <Header/>
           <MovieMain successLogin={successLogin}
                      movieSectionList={movieSectionList}
                      setMovieSectionList={setMovieSectionList}

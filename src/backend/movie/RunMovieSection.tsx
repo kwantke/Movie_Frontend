@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 import axios from "axios";
 
-export interface IMovieSection{
+/*export interface IMovieSection{
   id: number;
   section: number;
   sectionName: string;
@@ -10,7 +10,7 @@ export interface IMovieSection{
 type listProp<IMovieSection> ={
   setMovieSectionList: (flag: IMovieSection)=> void;
   setHasSectionFlag: (flag: boolean) => void;
-}
+}*/
 
 
 

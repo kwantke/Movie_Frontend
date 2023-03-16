@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
         <div className="app">
-          <Header/>
+          {/*<Header/>*/}
             <Router>
                 <Route path="/" exact component={Login}/>
                 <Route path="/join" exact component={Join}/>

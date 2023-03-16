@@ -1,16 +1,25 @@
 import {Link} from "react-router-dom";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import {IMovie} from "../../routes/Detail";
+interface PropTypes{
+ movieDetail: string;
+}
+interface IActor{
+  idx: number
+  movieId: bigint
+  actorName: string
+  actorImg: string
 
-export default function MovieDetailMain(){
+}
+export default function MovieDetailMain({movie}:any){
 
   let video: HTMLElement;
   let myvideo: HTMLVideoElement;
+  console.log("dddssaaaaaaa = "+movie.id);
   useEffect(()=>{
     setTimeout(()=>{
       video = document.querySelector('.video-container') as HTMLElement;
       myvideo = document.querySelector('#myvideo') as HTMLVideoElement;
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      //myvideo = useRef<HTMLVideoElement>();
     })
   })
   const playButton = () =>{
@@ -29,10 +38,10 @@ export default function MovieDetailMain(){
   return <>
     <div className="play-container container">
       {/* Play Image */}
-      <img src="/images/play-page/play-background.jpg" alt="" className="play-img"/>
+      <img src={movie.img} alt="" className="play-img"/>
       {/* Play Text */}
       <div className="play-text">
-        <h2>name</h2>
+        <h2>{movie.name}</h2>
         {/* Ratings */}
         <div className="rating">
           <i className='bx bxs-star'></i>
@@ -66,35 +75,20 @@ export default function MovieDetailMain(){
       </div>
     </div>
     <div className="about-movie container">
-      <h2>Jumanji: Welcome to the Jungle</h2>
-      <p>When four students play with a magical video game, they are drawn to the jungle, where they are trapped as their avatars. To return to the real world, they must finish the game.</p>
+      <h2>{movie.name}</h2>
+      <p>{movie.detail}</p>
       {/* Movie Cast */}
       <h2 className="cast-heading">Movie Cast</h2>
       <div className="cast">
-        <div className="cast-box">
-          <img src="/images/play-page/cast1.jpg" alt="" className="cast-img" />
-          <span className="cast-title">Dwayne Johnson</span>
-        </div>
-        <div className="cast-box">
-          <img src="/images/play-page/cast2.jpg" alt="" className="cast-img" />
-          <span className="cast-title">Karen Gillan</span>
-        </div>
-        <div className="cast-box">
-          <img src="/images/play-page/cast3.jpg" alt="" className="cast-img" />
-          <span className="cast-title">Kevin Hart</span>
-        </div>
-        <div className="cast-box">
-          <img src="/images/play-page/cast4.jpg" alt="" className="cast-img" />
-          <span className="cast-title">Jack Black</span>
-        </div>
-        <div className="cast-box">
-          <img src="/images/play-page/cast5.jpg" alt="" className="cast-img" />
-          <span className="cast-title">Nick Jonas</span>
-        </div>
-        <div className="cast-box">
-          <img src="/images/play-page/cast6.jpg" alt="" className="cast-img" />
-          <span className="cast-title">Madison Iseman</span>
-        </div>
+        {
+          movie.actorDtoList.length >1 ? movie.actorDtoList.map((actor:IActor)=>(
+              <div className="cast-box" key={actor.idx}>
+                <img src={actor.actorImg} alt="" className="cast-img" />
+                <span className="cast-title">{actor.actorName}</span>
+              </div>
+          )): "등록되어 있는 배우가 없습니다."
+        }
+
       </div>
     </div>
     <div className="download">
