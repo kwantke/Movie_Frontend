@@ -16,12 +16,21 @@ export default function MovieDetailMain({movie}:any){
   let video: HTMLElement;
   let myvideo: HTMLVideoElement;
   console.log("dddssaaaaaaa = "+movie.id);
-  useEffect(()=>{
-    setTimeout(()=>{
+  function starCall(){
+    var array = [];
+    for (var i = 0; i < movie.star; i++) {
+      array.push(<i className='bx bxs-star'></i>);
+    }
+    return array;
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
       video = document.querySelector('.video-container') as HTMLElement;
       myvideo = document.querySelector('#myvideo') as HTMLVideoElement;
     })
-  })
+
+  });
   const playButton = () =>{
     video.classList.add("show-video");
 
@@ -44,11 +53,14 @@ export default function MovieDetailMain({movie}:any){
         <h2>{movie.name}</h2>
         {/* Ratings */}
         <div className="rating">
+          {
+            starCall()
+          }
+         {/* <i className='bx bxs-star'></i>
           <i className='bx bxs-star'></i>
           <i className='bx bxs-star'></i>
           <i className='bx bxs-star'></i>
-          <i className='bx bxs-star'></i>
-          <i className='bx bxs-star-half'></i>
+          <i className='bx bxs-star-half'></i>*/}
         </div>
         {/* Tags */}
         <div className="tags">

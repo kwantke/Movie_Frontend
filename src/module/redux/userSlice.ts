@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import store from "./store";
+import {PURGE} from "redux-persist";
 
 interface UserState {
   userId: string;
@@ -22,7 +23,15 @@ export const userSlice = createSlice({
       state.userId = action.payload.id;
       state.img = action.payload.img;
       state.isAuthenticated = true;
+    },
+    initUser: state => {
+      state.userId = initialState.userId;
+      state.img = initialState.img;
+      state.isAuthenticated = initialState.isAuthenticated;
     }
+  },
+  extraReducers: builder => {
+    builder.addCase(PURGE, () => initialState);
   }
 
 })

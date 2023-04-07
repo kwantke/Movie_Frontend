@@ -178,7 +178,7 @@ header{
   transition: all 500ms ease-in-out;
 }
 .movie-box .box-text{
-  position: absolute;
+  /*position: absolute;*/
   bottom: 0;
   left: 0;
   width: 100%;

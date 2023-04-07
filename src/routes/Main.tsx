@@ -5,6 +5,7 @@ import RunMovieSection from "../backend/movie/RunMovieSection";
 import MovieMain from "../components/Main/MovieMain";
 import {Redirect} from "react-router-dom";
 import {useAppSelector} from "../module/redux/hooks";
+import {persistor} from "../index";
 
 interface PropTypes{
   location: {
@@ -41,11 +42,20 @@ export default function Main(){
     setMovieId(id);
     setGoMovieDetailFlag(true);
   }
+
+  const logout = async ()=>{
+    console.log("로그아웃");
+    window.location.reload();
+    await persistor.purge();
+
+  }
   return (
       <>
 
           {/*<h1>{inFromLogin}님 환영합니다.</h1>*/}
-          <Header/>
+          <Header
+            logout = {logout}
+          />
           <MovieMain successLogin={successLogin}
                      movieSectionList={movieSectionList}
                      setMovieSectionList={setMovieSectionList}

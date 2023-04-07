@@ -7,8 +7,10 @@ interface propTypes{
   userId: string
 }
 export default function Header(
-
-){
+{
+  logout
+}:any)
+{
   const {userId, img, isAuthenticated} = useAppSelector(state => state.user);
   console.log(userId+" "+ img+" " +isAuthenticated)
   return (
@@ -17,6 +19,7 @@ export default function Header(
           <LogoAndSearchBoxAndUser
             userId ={userId}
             img = {img}
+            logout = {logout}
           />
           <NavBar/>
         </div>
