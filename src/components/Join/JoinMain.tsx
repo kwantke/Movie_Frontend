@@ -3,57 +3,35 @@ import JoinFailedAlert from "./JoinFailedAlert";
 import {useEffect, useState} from "react";
 
 interface PropTypes {
-  id: string,
-  password: string;
-  email: string;
   setId: (id: string) => void;
   setPassword: (password: string) => void;
+  setName: (name: string) => void;
   setEmail: (email: string) => void;
-  failedAlarmOn: boolean;
-  setFailedAlarmOn: (failedAlarm: boolean) => void;
-  failMessage: string;
-  setFailMessage: (failMessage:string) => void;
+  failMsg: string;
+  setFailMsg: (failMsg: string) => void;
   setRunJoin: (runJoin: boolean) => void;
+  join:() => void;
 }
 
 export default function JoinMain({
-     id
-   , setId
-   , password
+     setId
    , setPassword
-   , email
+   , setName
    , setEmail
-   , failedAlarmOn
-   , setFailedAlarmOn
-   , failMessage
-   , setFailMessage
-   , setRunJoin
-}: PropTypes) {
-
-  useEffect(()=>{
-    if(failedAlarmOn){
-      setTimeout(() =>{
-        setFailedAlarmOn(false);
-      }, 5000);
+   , failMsg
+   , join
+}: PropTypes)
+{
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      join ();
     }
-  })
-  const setUser = () =>{
-
-  }
-
-  const join = ()=>{
-    if(id !== "" && password !==""){
-      setRunJoin(true);
-    }else {
-      setFailMessage("아이디와 비밀번호를 입력해주세요.")
-      setFailedAlarmOn(true);
-    }
-  }
+  };
   return (
       <>
         <section className="join-form">
           <h1>회원가입</h1>
-          {failedAlarmOn && <JoinFailedAlert failMessage={failMessage}/>}
+          {failMsg != "" && <JoinFailedAlert failMsg={failMsg}/>}
           <div className="id int-area">
             <input
                 type="text"
@@ -72,7 +50,18 @@ export default function JoinMain({
                 autoComplete="off"
                 onChange={(e) => setPassword(e.target.value)}
                 required/>
-            <label htmlFor="pw">비밀번호</label>
+            <label htmlFor="pwInJoinInput">비밀번호</label>
+          </div>
+          <div className="name int-area">
+            <input
+                type="text"
+                name="name"
+                id="nameInJoinInput"
+                autoComplete="off"
+                onChange={(e) => setName(e.target.value)}
+                onKeyDown={handleKeyDown}
+                required/>
+            <label htmlFor="nameInJoinInput">이름</label>
           </div>
           <div className="email int-area">
             <input
@@ -81,6 +70,7 @@ export default function JoinMain({
                 id="emailInJoinInput"
                 autoComplete="off"
                 onChange={(e)=> setEmail(e.target.value)}
+                onKeyDown={handleKeyDown}
                 required/>
             <label htmlFor="emailInJoinInput">이메일</label>
           </div>

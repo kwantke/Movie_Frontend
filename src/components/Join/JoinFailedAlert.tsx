@@ -1,19 +1,15 @@
 import "./JoinFailedAlert.css"
 
 interface PropTypes {
-  failMessage: string;
+  failMsg: string;
 }
 export default function JoinFailedAlert({
-    failMessage
-
+                                          failMsg
   }:PropTypes){
-
-
   return(
       <>
         <div className="faliedJoin alert">
-
-          {failMessage}
+          {failMsg}
         </div>
 
       </>
