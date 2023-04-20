@@ -15,7 +15,6 @@ export default function MovieDetailMain({movie}:any){
 
   let video: HTMLElement;
   let myvideo: HTMLVideoElement;
-  console.log("dddssaaaaaaa = "+movie.id);
   function starCall(){
     var array = [];
     for (var i = 0; i < movie.star; i++) {

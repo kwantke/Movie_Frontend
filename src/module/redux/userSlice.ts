@@ -5,12 +5,14 @@ import {PURGE} from "redux-persist";
 interface UserState {
   userId: string;
   img: string;
+  token: string;
   isAuthenticated: boolean;
 }
 // state(인자)의 초기값(유저 정보)
 const initialState : UserState = {
   userId: "",
   img: "",
+  token:"",
   isAuthenticated: false
 
 }
@@ -22,11 +24,13 @@ export const userSlice = createSlice({
     setUser: (state,action) =>{
       state.userId = action.payload.id;
       state.img = action.payload.img;
+      state.token = action.payload.token;
       state.isAuthenticated = true;
     },
     initUser: state => {
       state.userId = initialState.userId;
       state.img = initialState.img;
+      state.token = initialState.token;
       state.isAuthenticated = initialState.isAuthenticated;
     }
   },

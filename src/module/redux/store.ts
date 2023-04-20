@@ -6,6 +6,7 @@ import {persistReducer} from "redux-persist";
 export interface UserInfo{
   id: string
   img: string
+  token: string
 }
 const reducers = combineReducers({
   user: userReducer,

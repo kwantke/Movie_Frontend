@@ -1,10 +1,10 @@
 import Header from "../components/Common/Header";
 import Footer from "../components/Common/Footer";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import RunMovieSection from "../backend/movie/RunMovieSection";
 import MovieMain from "../components/Main/MovieMain";
 import {Redirect} from "react-router-dom";
-import {useAppSelector} from "../module/redux/hooks";
+import {useAppDispatch, useAppSelector} from "../module/redux/hooks";
 import {persistor} from "../index";
 
 interface PropTypes{
@@ -36,24 +36,26 @@ export default function Main(){
   const [goMovieDetailFlag, setGoMovieDetailFlag] = useState(false);
   const [movieId, setMovieId] = useState("");
 
+  const {isAuthenticated} = useAppSelector(state=>state.user);
 
   const goMovieDetail =(id:string)=>{
-    console.log("id="+id)
     setMovieId(id);
     setGoMovieDetailFlag(true);
   }
 
   const logout = async ()=>{
-    console.log("로그아웃");
-    window.location.reload();
+    console.log("logout");
     await persistor.purge();
+    alert("로그아웃되었습니다.");
+    window.location.replace("/");
+
 
   }
   return (
       <>
 
-          {/*<h1>{inFromLogin}님 환영합니다.</h1>*/}
-          <Header
+        {isAuthenticated ?
+          <> <Header
             logout = {logout}
           />
           <MovieMain successLogin={successLogin}
@@ -64,6 +66,11 @@ export default function Main(){
 
           />
           <Footer/>
+          </> : (<Redirect to={{
+                pathname:"/"
+            }}/>)}
+
+
         {runSectionFlag && (<RunMovieSection
             setMovieSectionList={setMovieSectionList}
             setHasSectionFlag={setHasSectionFlag}
@@ -78,7 +85,6 @@ export default function Main(){
               }
             }}/>
         )}
-
       </>
   )
 
