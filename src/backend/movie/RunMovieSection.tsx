@@ -26,7 +26,7 @@ export default function RunMovieSection({
         if (res.data.errorCode == null) {
           console.log("섹션데이터 가져오기 성공")
           console.log(res);
-          setMovieSectionList(res.data.data);
+          setMovieSectionList(res.data);
           setHasSectionFlag(true);
           setRunSectionFlag(false);
 
