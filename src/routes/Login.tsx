@@ -2,10 +2,7 @@ import {useEffect, useState} from "react";
 import {Redirect} from "react-router-dom";
 import Loading from "../components/Login/Loading";
 import {LoginMain} from "../components/Login/LoginMain";
-import LoginFailAlert from "../components/Login/LoginFailAlert"
 import RunLogin from "../backend/RunLogin";
-import {useDispatch} from "react-redux";
-import {setUser} from "../module/redux/userSlice";
 import {useAppDispatch} from "../module/redux/hooks";
 
 export function Login() {
@@ -26,17 +23,35 @@ export function Login() {
   // 현재 컴포넌트인 Login에서 로그인 성공시 /main으로 가기위한 리다이렉트 플래그
   const [goMainFlag, setGoMainFlag] = useState(false);
 
+  const [failMsg,setFailMsg] = useState("");
+
   const dispatch = useAppDispatch();
 
   //setFailedAlarm은 RunLogin 컴포넌트에서 컨트롤하는데,
   //만약 failedAlarm 플래그가 켜지면
   //useEffect가 바뀐것을 인지하여 1초 후에 끈다.
   useEffect(()=>{
-    if(failedAlarm){
+    if(failMsg !=""){
       setTimeout(() =>{
+        setFailMsg("");
         setFailedAlarm(false);
-      }, 1000);
+      }, 2000);
     }
+    if(id != "" && password !=""){
+      document.addEventListener(
+          "keydown",
+          (event) => {
+            const keyName = event.key;
+
+            if (keyName === "Enter") {
+              login();
+              return;
+            }
+          },
+          false
+      );
+    }
+
   })
   // clean-up
   //현재 컴포넌트인 Login을 떠나 Main으로 가기 전에
@@ -50,24 +65,17 @@ export function Login() {
 
   //LoginMain 컴포넌트에서 사용
   const login = () => {
-    console.log("lgoin")
+    if(id == ""){
+      setFailMsg("아이디를 입력해주세요.")
+      return false;
+    } else if(password === ""){
+      setFailMsg("비밀번호를 입력해주세요")
+      return false;
+    }
     setRunLogin(true);
   }
-  // RunLogin에서 사용함
-  /*const goMain = ()=>{
-    console.log("로그인 성공goMain")
-    setRunLogin(false);
-    setGoMainFlag(true);
-  }*/
-  /*const offFailedAlarm = () => {
-    setTimeout(() =>{
-      setFailedAlarm(false);
-    }, 1000);
-  }*/
 
   const goMain =(id:string, img:string)=>{
-    console.log("로그인 성공" + id);
-    dispatch(setUser({userId: id, img: img, isAuthenticated: true}))
     setRunLogin(false);
     setGoMainFlag(true);
   }
@@ -77,13 +85,13 @@ export function Login() {
 
   return (
       <>
-        {failedAlarm && <LoginFailAlert/>}
         {loading ? <Loading/> : <LoginMain
-            password={password}
             id={id}
+            password={password}
             setId={setId}
             setPassword={setPassword}
             login={login}
+            failMsg={failMsg}
         />}
         {/*// RunLogin 컴포넌트는 실제 화면에 보이는것은 없으나,
          함수처럼 사용할 목적임.
@@ -92,17 +100,13 @@ export function Login() {
                               id={id}
                               password={password}
                               setRunLogin={setRunLogin}
-                              setFailedAlarm={setFailedAlarm}
-                              /*offFailedAlarm={offFailedAlarm}*/
+                              setFailMsg={setFailMsg}
                               goMain={goMain}
                       />
         )}
         {goMainFlag &&(
             <Redirect to={{
-              pathname: "/main",
-              state: {
-                inFromLogin: id
-              }
+              pathname: "/main"
             }} />
         )}
   </>

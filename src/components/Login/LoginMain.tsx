@@ -1,28 +1,38 @@
 import {Link} from "react-router-dom";
 import "./LoginMain.css";
-import {useState} from "react";
+import {KeyboardEvent, useEffect} from "react";
 
 interface propTypes {
-  id: string;
-  password: string;
+  id: string
+  password: string
   setId: (id: string) => void;
   setPassword: (password: string) => void;
   login: ()=> void;
+  failMsg: string;
 }
 
-export function LoginMain({id, password, setId, setPassword, login}: propTypes) {
+export function LoginMain({id, password, setId, setPassword, login, failMsg}: propTypes) {
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      login();
+    }
+  };
   return (
       <>
         <section className="join-form">
-          <h1>LOGO DESIGN</h1>
+          <h1>MyMovie</h1>
+          {failMsg !="" &&
+            <div className="alert">{failMsg}</div>
+          }
           <div className="id int-area">
             <input
                 type="text"
                 name="id"
                 id="id"
                 autoComplete="off"
-                onChange={(e) => setId(e.target.value)}
+                onChange={(e:React.ChangeEvent<HTMLInputElement>) => setId(e.target.value)}
+                onKeyDown={handleKeyDown}
                 required/>
             <label htmlFor="id">USER NAME</label>
           </div>
@@ -32,11 +42,12 @@ export function LoginMain({id, password, setId, setPassword, login}: propTypes) 
                 name="pw"
                 id="pw"
                 autoComplete="off"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e:React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                onKeyDown={handleKeyDown}
                 required/>
             <label htmlFor="pw">PASSWORD</label>
           </div>
-          <div className="login btn-area">
+          <div className="login btn-area" >
             <button onClick={login}>LOGIN</button>
           </div>
           <div className="caption">

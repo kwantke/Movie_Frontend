@@ -2,38 +2,36 @@ import {useEffect} from "react";
 import axios from "axios";
 import {useDispatch, useSelector} from 'react-redux';
 import { setUser} from "../module/redux/userSlice";
-import {RootState} from "../module/redux/store";
-import {useAppSelector} from "../module/redux/hooks";
+
 
 interface PropTypes{
   id: string;
   password: string;
   setRunLogin: (flag: boolean) => void;
-  setFailedAlarm: (flag: boolean) => void;
+  setFailMsg: (failMsg: string) => void;
   goMain: (id:string, img:string) => void;
-  /*offFailedAlarm: () => void;*/
 }
 export default function RunLogin({
-                                   id
-                                   , password
-                                   , setRunLogin
-                                   , setFailedAlarm
-                                   , goMain
-                                  }:PropTypes){
+       id
+     , password
+     , setRunLogin
+     , setFailMsg
+     , goMain
+    }:PropTypes){
   const loginUrl = process.env.REACT_APP_MAIN_LOGIN as string;
+
   let data ={
     id : id,
     password: password
   }
 
-  //const {userId, img, isAuthenticated} = useAppSelector((state:RootState) =>state.user);
-  const dispatch = useDispatch();
+   const dispatch = useDispatch();
 
   useEffect(() => {
     axios.post(loginUrl,
         JSON.stringify(data),{
           headers: {
-            "Content-Type": `application/json`,
+            "Content-Type": "application/json",
           },
         }
 
@@ -43,21 +41,23 @@ export default function RunLogin({
         if(res.data.errorCode == null) {
           console.log(res.data);
           console.log("로그인 성공");
-          goMain(res.data.id,res.data.img);
+          dispatch(setUser({
+              userId: res.data.id
+            , img: res.data.img
+            , token: res.data.token
+            , isAuthenticated: true})
+          )
+          goMain(res.data.id, res.data.img);
         }
         else {
           console.log("로그인 실패");
-          setFailedAlarm(true);
-          /*offFailedAlarm();*/
+          setFailMsg(res.data.errorMessage);
           setRunLogin(false);
         }
       } else {
-        console.log("로그인 실패");
-        setFailedAlarm(true);
-        /*offFailedAlarm();*/
+        setFailMsg(res.data.errorMessage);
         setRunLogin(false);
       }
-
     }).catch(function (err) {
       console.log(`Error Message: ${err}`);
     })
