@@ -47,6 +47,9 @@
   object-position: center;
 }
 
+.logout{
+  cursor: pointer;
+}
 @media (max-width: 768px){
 
   .logo{

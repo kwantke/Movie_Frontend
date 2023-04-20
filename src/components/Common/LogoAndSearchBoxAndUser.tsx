@@ -4,14 +4,11 @@ interface propTypes{
   img:string
   logout: () => void
 }
-export default function LogoAndSearchBoxAndUser(
-    {
-      userId
-      ,img
-      ,logout
-    }:propTypes
-){
-console.log(userId+" "+img);
+export default function LogoAndSearchBoxAndUser({
+    userId
+    ,img
+    ,logout
+}:propTypes){
   return (
     <>
       {/* Logo */}
@@ -19,7 +16,7 @@ console.log(userId+" "+img);
         Movie<span>Vel</span>
       </a>
       {/* Search Box */}
-      <div className='user-title' onClick={()=>logout()}>
+      <div className='user-title logout' onClick={()=>logout()}>
         로그아웃
       </div>
 

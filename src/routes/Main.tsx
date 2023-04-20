@@ -43,21 +43,12 @@ export default function Main(){
     setGoMovieDetailFlag(true);
   }
 
-  const logout = async ()=>{
-    console.log("logout");
-    await persistor.purge();
-    alert("로그아웃되었습니다.");
-    window.location.replace("/");
-
-
-  }
   return (
       <>
 
         {isAuthenticated ?
-          <> <Header
-            logout = {logout}
-          />
+          <>
+          <Header/>
           <MovieMain successLogin={successLogin}
                      movieSectionList={movieSectionList}
                      setMovieSectionList={setMovieSectionList}
