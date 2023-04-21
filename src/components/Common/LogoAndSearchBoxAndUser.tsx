@@ -5,8 +5,7 @@ interface propTypes{
   logout: () => void
 }
 export default function LogoAndSearchBoxAndUser({
-    userId
-    ,img
+     img
     ,logout
 }:propTypes){
   return (
@@ -19,7 +18,6 @@ export default function LogoAndSearchBoxAndUser({
       <div className='user-title logout' onClick={()=>logout()}>
         로그아웃
       </div>
-
       <div className="search-box">
         <input type="search" name="" id="search-input" placeholder="Search movie"/>
         <i className="bx bx-search"></i>
