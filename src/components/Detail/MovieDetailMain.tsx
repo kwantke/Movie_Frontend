@@ -18,7 +18,7 @@ export default function MovieDetailMain({movie}:any){
   function starCall(){
     var array = [];
     for (var i = 0; i < movie.star; i++) {
-      array.push(<i className='bx bxs-star'></i>);
+      array.push(<i key={i} className='bx bxs-star'></i>);
     }
     return array;
   }
