@@ -3,21 +3,10 @@ import RunMovieDetail from "../backend/movie/RunMovieDetail";
 import MovieDetailMain from "../components/Detail/MovieDetailMain";
 import Header from "../components/Common/Header";
 import {useParams} from "react-router-dom";
-import internal from "stream";
 
-/*interface IMovie {
-  id: bigint
-  img: string
-  name: string
-  type: string
-}*/
-/*interface PropTypes{
-  location:{
-    state: {
-      movieId: any;
-    }
-  }
-}*/
+import internal from "stream";
+import {logout} from "../module/common";
+
 interface ParamTypes{
   id: string
 }
@@ -39,19 +28,17 @@ export interface IMovie{
 
 export default function Detail(){
 
-  // @ts-ignore
-  const [movieDetail, setMovieDetail] = useState<IMovie>(null)
-  const [hasMovieDetailFrag, setHasMovieDetailFrag] = useState(false);
 
-  console.log("dddss = "+movieDetail?.star);
+  const [movieDetail, setMovieDetail] = useState<IMovie>()
+  const [hasMovieDetailFrag, setHasMovieDetailFrag] = useState(false);
+  const [searchData, setSearchData] = useState("");
+
   useEffect(() => {
     // 👇️ scroll to top on page load
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
   }, []);
   let data = useParams<ParamTypes>();
-  //const [movieId, setMovieId] = useState("");
-  //setMovieId(data.id);
-  console.log("id = "+ data.id);
+
   const [runMovieDetailFlag, setRunMovieDetailFlag] = useState(true)
 
   return <>
@@ -60,9 +47,6 @@ export default function Detail(){
       setMovieDetail = {setMovieDetail}
       setHasMovieDetailFrag = {setHasMovieDetailFrag}
     />
-    }
-    {
-        hasMovieDetailFrag && <Header/>
     }
 
     {

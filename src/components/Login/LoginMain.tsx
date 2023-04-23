@@ -31,7 +31,7 @@ export function LoginMain({id, password, setId, setPassword, login, failMsg}: pr
                 name="id"
                 id="id"
                 autoComplete="off"
-                onChange={(e:React.ChangeEvent<HTMLInputElement>) => setId(e.target.value)}
+                onChange={(e) => setId(e.target.value)}
                 onKeyDown={handleKeyDown}
                 required/>
             <label htmlFor="id">USER NAME</label>
@@ -42,7 +42,7 @@ export function LoginMain({id, password, setId, setPassword, login, failMsg}: pr
                 name="pw"
                 id="pw"
                 autoComplete="off"
-                onChange={(e:React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
                 onKeyDown={handleKeyDown}
                 required/>
             <label htmlFor="pw">PASSWORD</label>
