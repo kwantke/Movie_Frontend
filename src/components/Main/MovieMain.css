@@ -167,6 +167,7 @@ header{
   height: 380px;
   overflow: hidden;
 
+
 }
 .movie-box img:hover{
   transform: scale(1.1);
@@ -212,8 +213,8 @@ header{
 }
 .swiper-button-next,
 .swiper-button-prev{
-  /*    position: static !important;
-      margin: 0 0 0 10px !important;*/
+      position: static !important;
+      margin: 0 0 0 10px !important;
 }
 /* Movies*/
 .movies .heading{
@@ -244,11 +245,7 @@ header{
   background: var(--hover-color);
   transition: .3s all linear;
 }
-/* Copyright */
-.copyright{
-  text-align: center;
-  padding: 20px;
-}
+
 /* Play Container */
 .play-container{
   position: relative;
