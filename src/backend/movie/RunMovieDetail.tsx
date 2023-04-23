@@ -10,7 +10,7 @@ export default function RunMovieDetail({
     , setMovieDetail
     , setHasMovieDetailFrag
 }:any){
-  console.log("movieId="+ movieId)
+
   const movieDetailUrl = process.env.REACT_APP_MOVIE_DETAIL as string;
   const {token} = useAppSelector(state=>state.user);
   let config = {
@@ -22,14 +22,11 @@ export default function RunMovieDetail({
     .then(function(res){
       if (res.data !== null && res.data != "") {
         if (res.data.errorCode == null) {
-          console.log("상세 영화정보 가져오기 성공")
-          console.log(res);
+
           setMovieDetail(res.data)
           setHasMovieDetailFrag(true)
 
-          console.log("test");
         }else{
-          console.log(" 가져오기 실패")
 
         }
       } else {

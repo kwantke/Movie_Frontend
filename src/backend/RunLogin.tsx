@@ -36,11 +36,9 @@ export default function RunLogin({
         }
 
     ).then(function (res) {
-      //console.log(resp.data);
+
       if (res.data !== null && res.data != "") {
         if(res.data.errorCode == null) {
-          console.log(res.data);
-          console.log("로그인 성공");
           dispatch(setUser({
               userId: res.data.id
             , img: res.data.img
@@ -50,7 +48,6 @@ export default function RunLogin({
           goMain(res.data.id, res.data.img);
         }
         else {
-          console.log("로그인 실패");
           setFailMsg(res.data.errorMessage);
           setRunLogin(false);
         }

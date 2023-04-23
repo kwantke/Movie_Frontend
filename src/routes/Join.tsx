@@ -11,11 +11,7 @@ export default function Join(){
     const [runJoin, setRunJoin] = useState(false);
     const [goLoginFlag, setGoLoginFlag] = useState(false);
     const [failMsg,setFailMsg] = useState("");
-    // 실패했을 경우에 알람은 1초간 켜졌다가 까진다.
-    /*const failedAlarm = ()=>{
-        console.log("회원가입 실패")
-        setFailedAlaramOn(true);
-    }*/
+
     useEffect(()=>{
         if(failMsg != ""){
             setTimeout(() =>{

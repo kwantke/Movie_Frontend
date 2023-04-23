@@ -24,8 +24,6 @@ export default function RunMovieSection({
     .then(function(res) {
       if (res.data !== null && res.data != "") {
         if (res.data.errorCode == null) {
-          console.log("섹션데이터 가져오기 성공")
-          console.log(res);
           setMovieSectionList(res.data);
           setHasSectionFlag(true);
           setRunSectionFlag(false);
@@ -38,6 +36,11 @@ export default function RunMovieSection({
 
       }
     }).catch(function (err){
+      if(err.response.data.code == "ERROR_TOKEN_0002"){
+        alert("다시 로그인해주세요.");
+        window.location.replace("/");
+      }
+
       console.log(`Error Message: ${err}`);
 
     })
