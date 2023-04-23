@@ -3,26 +3,32 @@ import LogoAndSearchBoxAndUser from "./LogoAndSearchBoxAndUser";
 import NavBar from "./NavBar";
 import {useAppSelector} from "../../module/redux/hooks";
 import {persistor} from "../../index";
+import {useState} from "react";
+import RunMovieSearch from "../../backend/movie/RunMovieSearch";
+import {useHistory} from "react-router-dom";
 
-interface propTypes{
-  userId: string
+export interface propTypes{
+  logout:()=> void;
+  setSearchData: (searchData: string) => void;
 }
-export default function Header(){
-  const {userId, img, isAuthenticated} = useAppSelector(state => state.user);
 
-  const logout = async ()=>{
-    console.log("logout");
-    await persistor.purge();
-    alert("로그아웃되었습니다.");
-    window.location.replace("/");
-  }
+export default function Header({logout
+                                ,setSearchData
+                               }:propTypes){
+
+
+
+ /* const search = () => {
+    if (searchData == "") {
+      return false;
+    }
+  }*/
   return (
       <header>
         <div className="nav container">
           <LogoAndSearchBoxAndUser
-            userId ={userId}
-            img = {img}
-            logout = {logout}
+              logout={logout}
+            setSearchData={setSearchData}
           />
           <NavBar/>
         </div>
