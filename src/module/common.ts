@@ -1,5 +1,4 @@
 import {persistor} from "../index";
-import {useState} from "react";
 
 export const logout = async ()=>{
 

@@ -1,9 +1,6 @@
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {IMovie} from "../../routes/Detail";
-interface PropTypes{
- movieDetail: string;
-}
+
 interface IActor{
   idx: number
   movieId: bigint
@@ -33,13 +30,11 @@ export default function MovieDetailMain({movie}:any){
   const playButton = () =>{
     video.classList.add("show-video");
 
-    /* Auto play When Clck On Button*/
-    // myvideo.play();
     myvideo.play();
   }
   const closeButton = () =>{
     video.classList.remove("show-video");
-    /* Pause On Close Video */
+
     myvideo.pause();
 
   }
@@ -55,11 +50,6 @@ export default function MovieDetailMain({movie}:any){
           {
             starCall()
           }
-         {/* <i className='bx bxs-star'></i>
-          <i className='bx bxs-star'></i>
-          <i className='bx bxs-star'></i>
-          <i className='bx bxs-star'></i>
-          <i className='bx bxs-star-half'></i>*/}
         </div>
         {/* Tags */}
         <div className="tags">

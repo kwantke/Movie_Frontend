@@ -1,6 +1,5 @@
 import {Link} from "react-router-dom";
 import "./LoginMain.css";
-import {KeyboardEvent, useEffect} from "react";
 
 interface propTypes {
   id: string

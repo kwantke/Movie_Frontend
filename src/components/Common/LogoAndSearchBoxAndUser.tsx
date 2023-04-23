@@ -20,7 +20,7 @@ export default function LogoAndSearchBoxAndUser({
     <>
       {/* Logo */}
       <a href="/main" className="logo">
-        Ko<span>Moive</span>
+        MOVIE<span>VEL</span>
       </a>
       {/* Search Box */}
       <div className='user-title logout' onClick={()=>logout()}>
