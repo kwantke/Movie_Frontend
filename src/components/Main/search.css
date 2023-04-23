@@ -1,0 +1,19 @@
+
+.search-movie-box{
+  float: left;
+  width: 330px;
+  margin-right: 20px;
+  margin-top: 11px;
+}
+.top {
+  margin-top: 135px;
+
+}
+.search{
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  border-radius: 0.5rem;
+}
+

@@ -4,13 +4,6 @@ import "./MovieMain.css";
 import {useState} from "react";
 import RunMovieSection from "../../backend/movie/RunMovieSection";
 
-export interface IMovie {
-  id: number;
-  img: string;
-  name: string;
-  type: string;
-}
-
 
 export default function MovieMain(
     {successLogin
@@ -18,9 +11,6 @@ export default function MovieMain(
     ,hasSectionFlag
     ,goMovieDetail
 }:any){
-
-
-
 
   return (
    <>

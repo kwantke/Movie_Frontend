@@ -2,24 +2,12 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Navigation, Pagination} from "swiper";
 import "swiper/css";
 import {Link} from "react-router-dom";
-export interface IMovie {
-  id: number;
-  img: string;
-  name: string;
-  type: string;
-}
-
-export interface IMovieSection {
-  id: number;
-  section: number;
-  sectionName: string;
-  movieDtoList: IMovie[];
-}
+import {IMovie, IMovieSection} from "../../../routes/Main";
 
 
 export default function MovieMainLows({movieSectionList, goMovieDetail}: any){
 //export const MovieMainLows = ({movieSectionList, goMovieDetail}: any) => {
-console.log("dsds"+movieSectionList.length)
+
 
   return (
       <>
